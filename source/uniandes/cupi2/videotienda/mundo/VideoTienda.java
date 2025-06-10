@@ -148,6 +148,12 @@ public class VideoTienda
     public Cliente buscarCliente( String cedula )
     {
     	//TODO implementar
+        for (Cliente cliente : clientes) {
+            if (cliente.darCedula().equals(cedula)) {
+                return cliente;
+            }
+        }
+        return null;
     }
 
 
@@ -163,6 +169,16 @@ public class VideoTienda
     public void cargarSaldoCliente( String cedula, int monto ) throws Exception
     {
     	//TODO implementar
+        if (cedula == null || monto <= 0) {
+            throw new Exception("Datos inválidos para cargar saldo.");
+        }
+
+        Cliente cliente = buscarCliente(cedula);
+        if (cliente == null) {
+            throw new Exception("El cliente con cédula " + cedula + " no existe.");
+        }
+
+        cliente.adicionarSaldo(monto);
     }
 
     /**
