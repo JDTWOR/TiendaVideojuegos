@@ -51,8 +51,11 @@ public class Cliente {
     return 1;
   }
 
-  // ArrayList darAlquiladas()
-  //
+  public ArrayList darAlquiladas() {
+
+    return alquiladas;
+  }
+
   public Copia buscarPeliculaAlquilada(String pelicula, int codigo) {
     return copia;
   }
