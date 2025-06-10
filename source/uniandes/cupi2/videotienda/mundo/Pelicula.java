@@ -17,99 +17,108 @@ import java.util.ArrayList;
 /**
  * Esta clase representa una película que se encuentra en la videotienda y
  * de la cual puede haber copias disponibles o prestadas.
- */ 
-public class Pelicula
-{
+ */
+public class Pelicula {
 
-    //-----------------------------------------------------------------
-    // Atributos
-    //-----------------------------------------------------------------
+  // -----------------------------------------------------------------
+  // Atributos
+  // -----------------------------------------------------------------
 
-    /**
-     * Título de la película
-     */
-    private String titulo;
+  /**
+   * Título de la película
+   */
+  private String titulo;
 
-    /**
-     * Lista de copias disponibles
-     */
-    private ArrayList disponibles;
+  /**
+   * Lista de copias disponibles
+   */
+  private ArrayList disponibles;
 
-    /**
-     * Lista de copias prestadas
-     */
-    private ArrayList prestadas;
+  /**
+   * Lista de copias prestadas
+   */
+  private ArrayList prestadas;
 
-    /**
-     * Número de la siguiente copia a adicionar
-     */
-    private int codigoSiguienteCopia;
+  /**
+   * Número de la siguiente copia a adicionar
+   */
+  private int codigoSiguienteCopia;
 
-    //-----------------------------------------------------------------
-    // Constructores
-    //-----------------------------------------------------------------
+  // -----------------------------------------------------------------
+  // Constructores
+  // -----------------------------------------------------------------
 
-    /**
-     * Crea una película de la videotienda con el título dado. <br>
-     * <b>post: </b> La película se crea sin copias disponibles ni prestadas.
-     * @param unTitulo Título de la película. unTitulo != null.
-     */
-    public Pelicula( String unTitulo )
-    {
-    	//TODO implementar inicializando los atributos
-    }
+  /**
+   * Crea una película de la videotienda con el título dado. <br>
+   * <b>post: </b> La película se crea sin copias disponibles ni prestadas.
+   * 
+   * @param unTitulo Título de la película. unTitulo != null.
+   */
+  public Pelicula(String unTitulo) {
+    titulo = unTitulo;
+    codigoSiguienteCopia = codigoSiguienteCopia + 1;
 
-    //-----------------------------------------------------------------
-    // Métodos
-    //-----------------------------------------------------------------
+  }
 
-    /**
-     * Adiciona una nueva copia de la película. <br>
-     * <b>post: </b>La lista de películas disponibles tiene una nueva copia.
-     * @return código de la copia creada. código >= 1;
-     */
-    public int agregarCopia( )
-    {
-    	//TODO implementar. Recuerde retornar lo indicado en la documentación. 
-    }
+  // -----------------------------------------------------------------
+  // Métodos
+  // -----------------------------------------------------------------
 
-    /**
-     * Retorna una copia de película para alquilar si hay disponibles. <br>
-     * <b>post: </b> la copia queda en la lista de prestadas.
-     * @return Copia que ha sido alquilada o null si no hay disponibles.
-     */
-    public Copia alquilarCopia( )
-    {
-    	//TODO implementar. Recuerde retornar lo indicado en la documentación.
-    }
+  /**
+   * Adiciona una nueva copia de la película. <br>
+   * <b>post: </b>La lista de películas disponibles tiene una nueva copia.
+   * 
+   * @return código de la copia creada. código >= 1;
+   */
+  public int agregarCopia() {
+    // TODO implementar. Recuerde retornar lo indicado en la documentación.
+  }
 
-    /**
-     * Devuelve una copia de la película y la coloca como disponible. <br>
-     * <b>post: </b> regresa la copia a la lista de disponibles, sólo si está prestada.
-     * @param codigoCopia Código de la copia que se quiere devolver.
-     * @throws Exception Si la copia a devolver no está prestada.
-     */
+  /**
+   * Retorna una copia de película para alquilar si hay disponibles. <br>
+   * <b>post: </b> la copia queda en la lista de prestadas.
+   * 
+   * @return Copia que ha sido alquilada o null si no hay disponibles.
+   */
+  public Copia alquilarCopia() {
+    // TODO implementar. Recuerde retornar lo indicado en la documentación.
+  }
 
-     //TODO Definir la signatura del método de acuerdo a la documentación e implementarlo.
+  /**
+   * Devuelve una copia de la película y la coloca como disponible. <br>
+   * <b>post: </b> regresa la copia a la lista de disponibles, sólo si está
+   * prestada.
+   * 
+   * @param codigoCopia Código de la copia que se quiere devolver.
+   * @throws Exception Si la copia a devolver no está prestada.
+   */
 
-    /**
-     * Retorna el título de la película.
-     * @return título de la película.
-     */
-    public String darTitulo( )
-    {
-        return titulo;
-    }
+  // TODO Definir la signatura del método de acuerdo a la documentación e
+  // implementarlo.
 
-    /**
-     * Retorna la cantidad total de copias que existen de la película en la videotienda
-     * @return entero con la cantidad de copias que existen en la tienda
-     */
-    //TODO Definir la signatura del método de acuerdo a la documentación e implementarlo.
+  /**
+   * Retorna el título de la película.
+   * 
+   * @return título de la película.
+   */
+  public String darTitulo() {
+    return titulo;
+  }
 
-    /**
-     * Retorna el número de copias disponibles
-     * @return número de copias disponibles
-     */
-    //TODO Definir la signatura del método de acuerdo a la documentación e implementarlo.
+  /**
+   * Retorna la cantidad total de copias que existen de la película en la
+   * videotienda
+   * 
+   * @return entero con la cantidad de copias que existen en la tienda
+   */
+  // TODO Definir la signatura del método de acuerdo a la documentación e
+  // implementarlo.
+
+  /**
+   * Retorna el número de copias disponibles
+   * 
+   * @return número de copias disponibles
+   */
+  // TODO Definir la signatura del método de acuerdo a la documentación e
+  // implementarlo.
 }
