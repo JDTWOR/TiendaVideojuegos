@@ -18,6 +18,9 @@ public class Copia {
   }
 
   public boolean esIgualA(Copia otra) {
-    return true;
+    if (this.codigo == otra.darCodigo()) {
+      return true;
+    }
+    return false;
   }
 }
