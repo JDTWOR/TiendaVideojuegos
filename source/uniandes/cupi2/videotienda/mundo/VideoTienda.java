@@ -47,15 +47,12 @@ public class VideoTienda {
   // -----------------------------------------------------------------
 
   /**
-   * Crea una videotienda sin pel�culas registradas.
-   * 
-   * @param unaTarifa Tarifa diaria de alquiler. tarifa > 0.
+   * Constructor de la VideoTienda
    */
   public VideoTienda(int unaTarifa) {
-    // TODO implementar inicializando los atributos
-    tarifaDiaria = unaTarifa;
-    clientes = new ArrayList<Cliente>();
-    catalogo = new ArrayList<Pelicula>();
+      tarifaDiaria = unaTarifa;
+      clientes = new ArrayList<Cliente>();
+      catalogo = new ArrayList<Pelicula>();
   }
 
   // -----------------------------------------------------------------
@@ -73,243 +70,202 @@ public class VideoTienda {
    *                   adecuado.
    */
   public void cargarPeliculas(String archivo) throws Exception {
-    String titulo, dato;
-    int peliculas, copias;
-    Pelicula pel;
-
-    // Limpia los datos iniciales de pel�culas
-    catalogo.clear();
-
-    // Obtiene los datos
-    try {
       Properties datos = new Properties();
       FileInputStream input = new FileInputStream(archivo);
       datos.load(input);
+      input.close();
+      
+      String dato = datos.getProperty("total.peliculas");
+      int total = Integer.parseInt(dato);
+      
+      for (int i = 1; i <= total; i++) {
+          String titulo = datos.getProperty("pelicula" + i + ".titulo");
+          catalogo.add(new Pelicula(titulo));
+      }
+  }
 
-      // Obtiene el n�mero de pel�culas
-      peliculas = Integer.parseInt(datos.getProperty("total.peliculas"));
+  /**
+   * Alquila una pel�cula a un cliente. <br>
+   * <b>post: </b> si hay copias disponibles, alquila una copia de la pel�cula, adicion�ndola a la lista de alquiladas del cliente y de la videotienda.
+   * @param titulo T�tulo de la pel�cula. titulo != null.
+   * @param cedula C�dula del cliente. cedula != null.
+   * @return n�mero de copia alquilada.
+   * @throws Exception Si la pel�cula no existe.
+   * @throws Exception Si el cliente no existe.
+   * @throws Exception Si no hay copias disponibles.
+   * @throws Exception Si el saldo del cliente no es suficiente para el alquiler.
+   */
+  public void alquilarPelicula( String titulo, String cedula ) throws Exception
+  {
+      Cliente cliente = buscarCliente(cedula);
+      if (cliente == null) {
+          throw new Exception("El cliente no existe");
+      }
 
-      for (int i = 1; i <= peliculas; i++) {
-        dato = "pelicula" + i + ".nombre";
-        // Carga una pel�cula
-        titulo = datos.getProperty(dato);
-        if (titulo == null) {
-          throw new Exception("Falta definir la propiedad " + dato);
-        }
+      Pelicula pelicula = buscarPelicula(titulo);
+      if (pelicula == null) {
+          throw new Exception("La película no existe");
+      }
 
-        copias = Integer.parseInt(datos.getProperty("pelicula" + i + ".copias"));
-        pel = new Pelicula(titulo);
-        for (int j = 1; j <= copias; j++) {
-          pel.agregarCopia();
-        }
-		catalogo.add(pel);
-        cliente.cargarSaldo(monto);
-    }
+      Copia copia = pelicula.alquilarCopia();
+      if (copia == null) {
+          throw new Exception("No hay copias disponibles");
+      }
 
-    /**
-     * Alquila una pel�cula a un cliente. <br>
-     * <b>post: </b> si hay copias disponibles, alquila una copia de la pel�cula, adicion�ndola a la lista de alquiladas del cliente y de la videotienda.
-     * @param titulo T�tulo de la pel�cula. titulo != null.
-     * @param cedula C�dula del cliente. cedula != null.
-     * @return n�mero de copia alquilada.
-     * @throws Exception Si la pel�cula no existe.
-     * @throws Exception Si el cliente no existe.
-     * @throws Exception Si no hay copias disponibles.
-     * @throws Exception Si el saldo del cliente no es suficiente para el alquiler.
-     */
-    public int alquilarPelicula( String titulo, String cedula ) throws Exception
-    {
-    	
-        if (titulo == null || cedula == null) {
-            throw new Exception("El título o la cédula no pueden ser nulos.");
-        }
+      cliente.alquilarCopia(copia);
+  }
 
-        Pelicula pelicula = buscarPelicula(titulo);
-        if (pelicula == null) {
-            throw new Exception("La película " + titulo + " no existe.");
-        }
+  /**
+   * Devuelve a la videotienda una copia alquilada por el cliente identificado con la c�dula dada. <br>
+   * <b>post: </b> Si la copia est� alquilada por el cliente, la copia se deja disponible, y el cliente ya no la tiene entre sus prestadas.
+   * @param titulo T�tulo de la pel�cula. titulo != null.
+   * @param numeroCopia N�mero de copia a devolver.
+   * @param cedula C�dula del cliente. cedula != null.
+   * @throws Exception Si el cliente no existe.
+   * @throws Exception Si el cliente no tiene la copia alquilada.
+   */
+  public void devolverCopia( String titulo, int numeroCopia, String cedula ) throws Exception
+  {
+      Cliente cliente = buscarCliente(cedula);
+      if (cliente == null) {
+          throw new Exception("El cliente no existe");
+      }
 
-        Cliente cliente = buscarCliente(cedula);
-        if (cliente == null) {
-            throw new Exception("El cliente con cédula " + cedula + " no existe.");
-        }
+      Pelicula pelicula = buscarPelicula(titulo);
+      if (pelicula == null) {
+          throw new Exception("La película no existe");
+      }
 
-        if (cliente.darSaldo() < tarifaDiaria) {
-            throw new Exception("El saldo del cliente no es suficiente para alquilar la película.");
-        }
+      cliente.devolverCopia(titulo, numeroCopia);
+      pelicula.devolverCopia(numeroCopia);
+  }
 
-        Copia copia = pelicula.alquilarCopia();
-        if (copia == null) {
-            throw new Exception("No hay copias disponibles de la película " + titulo + ".");
-        }
+  /**
+   * Afilia un nuevo cliente a la videotienda
+   * @param cedula Cédula del cliente. cedula != null
+   * @param nombre Nombre del cliente. nombre != null
+   * @param direccion Dirección del cliente. direccion != null
+   * @throws Exception Si ya existe un cliente con la misma cédula
+   */
+  public void afiliarCliente(String cedula, String nombre, String direccion) throws Exception {
+      if (buscarCliente(cedula) != null) {
+          throw new Exception("Ya existe un cliente con la cédula " + cedula);
+      }
+      Cliente nuevoCliente = new Cliente(cedula, nombre, direccion);
+      clientes.add(nuevoCliente);
+  }
 
-        cliente.alquilarCopia();
-        cliente.cargarSaldo(-tarifaDiaria);
-        
-        return copia.darCodigo();
-    }
+  /**
+   * Carga saldo a la cuenta de un cliente
+   * @param cedula Cédula del cliente. cedula != null
+   * @param monto Monto a cargar. monto > 0
+   * @throws Exception Si el cliente no existe
+   */
+  public void cargarSaldoCliente(String cedula, int monto) throws Exception {
+      Cliente cliente = buscarCliente(cedula);
+      if (cliente == null) {
+          throw new Exception("El cliente con cédula " + cedula + " no existe");
+      }
+      cliente.cargarSaldo(monto);
+  }
 
-    /**
-     * Devuelve a la videotienda una copia alquilada por el cliente identificado con la c�dula dada. <br>
-     * <b>post: </b> Si la copia est� alquilada por el cliente, la copia se deja disponible, y el cliente ya no la tiene entre sus prestadas.
-     * @param titulo T�tulo de la pel�cula. titulo != null.
-     * @param numeroCopia N�mero de copia a devolver.
-     * @param cedula C�dula del cliente. cedula != null.
-     * @throws Exception Si el cliente no existe.
-     * @throws Exception Si el cliente no tiene la copia alquilada.
-     */
-    public void devolverCopia( String titulo, int numeroCopia, String cedula ) throws Exception
-    {
-    	//TODO implementar
-        if (titulo == null || cedula == null) {
-            throw new Exception("El título y la cédula no pueden ser nulos.");
-        }
+  /**
+   * Busca una película en el catálogo por su título.
+   * @param titulo Título de la película. titulo != null.
+   * @return la película correspondiente al título, o null si no existe.
+   */
+  private Pelicula buscarPelicula(String titulo) {
+      for (Pelicula p : catalogo) {
+          if (p.darTitulo().equals(titulo)) {
+              return p;
+          }
+      }
+      return null;
+  }
 
-        Pelicula pelicula = buscarPelicula(titulo);
-        if (pelicula == null) {
-            throw new Exception("La película " + titulo + " no existe.");
-        }
+  /**
+   * Retorna la lista de clientes de la videotienda
+   * @return ArrayList la lista de clientes
+   */
+  public ArrayList<Cliente> darListaClientes() {
+      return clientes;
+  }
 
-        Cliente cliente = buscarCliente(cedula);
-        if (cliente == null) {
-            throw new Exception("El cliente con cédula " + cedula + " no existe.");
-        }
+  /**
+   * Retorna el catálogo de películas de la videotienda
+   * @return lista de películas existentes. lista != null.
+   */
+  public ArrayList<Pelicula> darCatalogo() {
+      return catalogo;
+  }
 
-        Copia copia = cliente.buscarPeliculaAlquilada(pelicula, numeroCopia);
-        if (copia == null) {
-            throw new Exception("El cliente no tiene la copia alquilada.");
-        }
+  /**
+   * Busca un cliente por su cédula
+   * @param cedula Cédula del cliente a buscar. cedula != null
+   * @return Cliente si lo encuentra, null si no existe
+   */
+  private Cliente buscarCliente(String cedula) {
+      for (Cliente cliente : clientes) {
+          if (cliente.darCedula().equals(cedula)) {
+              return cliente;
+          }
+      }
+      return null;
+  }
 
-        pelicula.devolverCopia(copia);
-        cliente.devolverCopia(copia);
-    }
+  /**
+   * Agrega una copia de una película al catálogo
+   * @param titulo Título de la película. titulo != null
+   * @throws Exception Si la película no existe en el catálogo
+   */
+  public void agregarCopiaPelicula(String titulo) throws Exception {
+      Pelicula pelicula = buscarPelicula(titulo);
+      if (pelicula == null) {
+          throw new Exception("La película no existe en el catálogo");
+      }
+      pelicula.agregarCopia();
+  }
 
-    /**
-     * Afilia un nuevo cliente a la videotienda
-     * @param cedula Cédula del cliente. cedula != null
-     * @param nombre Nombre del cliente. nombre != null
-     * @param direccion Dirección del cliente. direccion != null
-     * @throws Exception Si ya existe un cliente con la misma cédula
-     */
-    public void afiliarCliente(String cedula, String nombre, String direccion) throws Exception {
-        if (buscarCliente(cedula) != null) {
-            throw new Exception("Ya existe un cliente con la cédula " + cedula);
-        }
-        Cliente nuevoCliente = new Cliente(cedula, nombre, direccion);
-        clientes.add(nuevoCliente);
-    }
+  /**
+   * Modifica la tarifa diaria de alquiler
+   * @param nuevaTarifa Nueva tarifa a establecer. nuevaTarifa > 0
+   */
+  public void modificarTarifa(int nuevaTarifa) {
+      if (nuevaTarifa > 0) {
+          tarifaDiaria = nuevaTarifa;
+      }
+  }
 
-    /**
-     * Carga saldo a la cuenta de un cliente
-     * @param cedula Cédula del cliente. cedula != null
-     * @param monto Monto a cargar. monto > 0
-     * @throws Exception Si el cliente no existe
-     */
-    public void cargarSaldoCliente(String cedula, int monto) throws Exception {
-        Cliente cliente = buscarCliente(cedula);
-        if (cliente == null) {
-            throw new Exception("El cliente con cédula " + cedula + " no existe");
-        }
-        cliente.cargarSaldo(monto);
-    }
+  /**
+   * Retorna la tarifa diaria de alquiler
+   * @return tarifa diaria actual
+   */
+  public int darTarifaDiaria() {
+      return tarifaDiaria;
+  }
 
-    /**
-     * Busca una película en el catálogo por su título.
-     * @param titulo Título de la película. titulo != null.
-     * @return la película correspondiente al título, o null si no existe.
-     */
-    public Pelicula buscarPelicula(String titulo) {
-        for (Pelicula pelicula : catalogo) {
-            if (pelicula.darTitulo().equals(titulo)) {
-                return pelicula;
-            }
-        }
-        return null;
-    }
+  //-----------------------------------------------------------------
+  // Puntos de Extensi�n
+  //-----------------------------------------------------------------
 
-    /**
-     * Retorna la lista de clientes de la videotienda
-     * @return ArrayList la lista de clientes
-     */
-    public ArrayList<Cliente> darListaClientes() {
-        return clientes;
-    }
+  /**
+   * M�todo para la extensi�n 1
+   * @return Respuesta de la extensi�n 1
+   */
+  public String metodo1( )
+  {
+      return "Respuesta 1";
 
-    /**
-     * Retorna el catálogo de películas de la videotienda
-     * @return lista de películas existentes. lista != null.
-     */
-    public ArrayList<Pelicula> darCatalogo() {
-        return catalogo;
-    }
+  }
 
-    /**
-     * Busca un cliente por su cédula
-     * @param cedula Cédula del cliente a buscar. cedula != null
-     * @return Cliente si lo encuentra, null si no existe
-     */
-    private Cliente buscarCliente(String cedula) {
-        for (Cliente cliente : clientes) {
-            if (cliente.darCedula().equals(cedula)) {
-                return cliente;
-            }
-        }
-        return null;
-    }
+  /**
+   * M�todo para la extensi�n 2
+   * @return Respuesta de la extensi�n 2
+   */
+  public String metodo2( )
+  {
+      return "Respuesta 2";
 
-    /**
-     * Agrega una copia de una película al catálogo
-     * @param titulo Título de la película. titulo != null
-     * @throws Exception Si la película no existe en el catálogo
-     */
-    public void agregarCopiaPelicula(String titulo) throws Exception {
-        Pelicula pelicula = buscarPelicula(titulo);
-        if (pelicula == null) {
-            throw new Exception("La película no existe en el catálogo");
-        }
-        pelicula.agregarCopia();
-    }
-
-    /**
-     * Modifica la tarifa diaria de alquiler
-     * @param nuevaTarifa Nueva tarifa a establecer. nuevaTarifa > 0
-     */
-    public void modificarTarifa(int nuevaTarifa) {
-        if (nuevaTarifa > 0) {
-            tarifaDiaria = nuevaTarifa;
-        }
-    }
-
-    /**
-     * Retorna la tarifa diaria de alquiler
-     * @return tarifa diaria actual
-     */
-    public int darTarifaDiaria() {
-        return tarifaDiaria;
-    }
-
-    //-----------------------------------------------------------------
-    // Puntos de Extensi�n
-    //-----------------------------------------------------------------
-
-    /**
-     * M�todo para la extensi�n 1
-     * @return Respuesta de la extensi�n 1
-     */
-    public String metodo1( )
-    {
-        return "Respuesta 1";
-
-    }
-
-    /**
-     * M�todo para la extensi�n 2
-     * @return Respuesta de la extensi�n 2
-     */
-    public String metodo2( )
-    {
-        return "Respuesta 2";
-
-    }
+  }
 
 }

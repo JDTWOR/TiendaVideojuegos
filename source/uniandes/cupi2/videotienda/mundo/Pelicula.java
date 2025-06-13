@@ -71,13 +71,10 @@ public class Pelicula {
    * @return c�digo de la copia creada. c�digo >= 1;
    */
   public int agregarCopia() {
-<<<<<<< HEAD
     // TODO implementar. Recuerde retornar lo indicado en la documentaci�n.
-
-=======
-    // TODO implementar. Recuerde retornar lo indicado en la documentaci�n.
->>>>>>> f8859d8 (Se declararon las funciones darCatalogo y darClientes)
+    return codigoSiguienteCopia;
   }
+
 
   /**
    * Retorna una copia de pel�cula para alquilar si hay disponibles. <br>
@@ -87,6 +84,7 @@ public class Pelicula {
    */
   public Copia alquilarCopia() {
     // TODO implementar. Recuerde retornar lo indicado en la documentaci�n.
+    return null;
   }
 
   /**
@@ -126,5 +124,19 @@ public class Pelicula {
    */
   // TODO Definir la signatura del m�todo de acuerdo a la documentaci�n e
   // implementarlo.
+
+  /**
+   * Devuelve una copia de la pel�cula y la coloca como disponible. <br>
+   * <b>post: </b> regresa la copia a la lista de disponibles, s�lo si est�
+   * prestada.
+   * 
+   * @param numeroCopia C�digo de la copia que se quiere devolver.
+   * @throws Exception Si la copia a devolver no est� prestada.
+   */
+  public void devolverCopia(int numeroCopia) {
+    // Mark the copy as available
+    // Implementation depends on how copies are stored in Pelicula
+  }
+}
 
 
