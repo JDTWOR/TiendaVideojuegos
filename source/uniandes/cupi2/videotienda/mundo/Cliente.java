@@ -12,11 +12,14 @@ public class Cliente {
 
   private int saldo;
 
+  private ArrayList<Copia> alquiladas;
+
   public Cliente(String laCedula, String elNombre, String laDireccion) {
     cedula = laCedula;
     nombre = elNombre;
     direccion = laDireccion;
     saldo = 0;
+    alquiladas = new ArrayList<>();
   }
 
   public String darCedula() {
@@ -48,16 +51,19 @@ public class Cliente {
   }
 
   public int darNumeroAlquiladas() {
-    return 1;
+    return alquiladas.size();
   }
 
-  public ArrayList darAlquiladas() {
-
+  public ArrayList<Copia> darAlquiladas() {
     return alquiladas;
   }
 
   public Copia buscarPeliculaAlquilada(String pelicula, int codigo) {
-    return copia;
+    for (Copia copia2 : alquiladas) {
+      if ((pelicula && codigo) == copia2.darTitulo() && copia2.darCodigo() ) {
+        return copia2
+      }
+    }
   }
 
   public void develoverCopia(String pelicula, int codigo) {
