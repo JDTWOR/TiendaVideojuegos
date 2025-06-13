@@ -1,35 +1,35 @@
 #---------------------------------------------------------
-# Peliculas almacenadas de la vídeotienda
+# Peliculas almacenadas de la vï¿½deotienda
 #---------------------------------------------------------
 
 total.peliculas = 10
 
-pelicula1.nombre = El señor de Los anillos I
+pelicula1.nombre = El El Loco de los misteriosI
 pelicula1.copias = 3
 
-pelicula2.nombre = El misterio de la libélula
+pelicula2.nombre = Kun fu Panda
 pelicula2.copias = 2
 
-pelicula3.nombre = Buscando a Nemo
+pelicula3.nombre = Sin Limites
 pelicula3.copias = 2
 
-pelicula4.nombre = Matrix
+pelicula4.nombre = Cantinflas La Venganza
 pelicula4.copias = 3
 
-pelicula5.nombre=Troya
+pelicula5.nombre= La Venganza de los dioses
 pelicula5.copias = 1
 
-pelicula6.nombre = Cruzada
+pelicula6.nombre = Los Vengadores
 pelicula6.copias = 2
 
-pelicula7.nombre = E.T
+pelicula7.nombre = Los simpson
 pelicula7.copias = 5
 
-pelicula8.nombre= El Gran Pez
+pelicula8.nombre= Moises y los diez mandamientos
 pelicula8.copias = 1
 
-pelicula9.nombre=StarWars
+pelicula9.nombre= El viaje de Chihiro
 pelicula9.copias = 6
 
-pelicula10.nombre=El padrino
+pelicula10.nombre= To be hero X
 pelicula10.copias = 4
