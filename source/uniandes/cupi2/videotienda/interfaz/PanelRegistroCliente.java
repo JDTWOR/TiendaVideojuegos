@@ -1,8 +1,8 @@
 /**
  * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 
  * $Id: PanelRegistroCliente.java,v 1.1 2005/12/16 15:13:33 k-marcos Exp $ 
- * Universidad de los Andes (Bogotá - Colombia)
- * Departamento de Ingeniería de Sistemas y Computación 
+ * Universidad de los Andes (Bogotï¿½ - Colombia)
+ * Departamento de Ingenierï¿½a de Sistemas y Computaciï¿½n 
  * Licenciado bajo el esquema Academic Free License version 2.1 
  *
  * Proyecto Cupi2 (http://cupi2.uniandes.edu.co)
@@ -46,7 +46,7 @@ public class PanelRegistroCliente extends JPanel implements ActionListener
     //-----------------------------------------------------------------
 
     /**
-     * Diálogo donde se ubica el panel
+     * Diï¿½logo donde se ubica el panel
      */
     private DialogoRegistroCliente dialogo;
 
@@ -70,7 +70,7 @@ public class PanelRegistroCliente extends JPanel implements ActionListener
 
     /**
      * Crea el panel para el registro de un cliente
-     * @param elDialogo Diálogo donde se ubica el panel. elDialogo != null.
+     * @param elDialogo Diï¿½logo donde se ubica el panel. elDialogo != null.
      */
     public PanelRegistroCliente( DialogoRegistroCliente elDialogo )
     {
@@ -80,8 +80,8 @@ public class PanelRegistroCliente extends JPanel implements ActionListener
         setLayout( new BorderLayout( ) );
 
         labNombre = new JLabel( "Nombre:" );
-        labCedula = new JLabel( "Cédula:" );
-        labDireccion = new JLabel( "Dirección:" );
+        labCedula = new JLabel( "CÃ©dula:" );
+        labDireccion = new JLabel( "DirecciÃ³n:" );
         labSaldo = new JLabel( "Saldo:" );
         txtNombre = new JTextField( );
         txtCedula = new JTextField( );
@@ -117,12 +117,12 @@ public class PanelRegistroCliente extends JPanel implements ActionListener
     }
 
     //-----------------------------------------------------------------
-    // Métodos
+    // Mï¿½todos
     //-----------------------------------------------------------------
 
     /**
-     * Retorna el dato Cédula del formulario
-     * @return cédula
+     * Retorna el dato Cï¿½dula del formulario
+     * @return cï¿½dula
      */
     public String darCedula( )
     {
@@ -139,8 +139,8 @@ public class PanelRegistroCliente extends JPanel implements ActionListener
     }
 
     /**
-     * Retorna el dato Dirección del formulario
-     * @return dirección
+     * Retorna el dato DirecciÃ³n del formulario
+     * @return direcciÃ³n
      */
     public String darDireccion( )
     {
@@ -158,7 +158,7 @@ public class PanelRegistroCliente extends JPanel implements ActionListener
 
     /**
      * Responde a los eventos de los botones del panel
-     * @param evento Evento generado por un botón. evento != null.
+     * @param evento Evento generado por un botï¿½n. evento != null.
      */
     public void actionPerformed( ActionEvent evento )
     {

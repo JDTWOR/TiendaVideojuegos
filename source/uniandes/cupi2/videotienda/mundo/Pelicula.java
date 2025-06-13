@@ -32,12 +32,12 @@ public class Pelicula {
   /**
    * Lista de copias disponibles
    */
-  private ArrayList disponibles;
+  private ArrayList<Copia> disponibles;
 
   /**
    * Lista de copias prestadas
    */
-  private ArrayList prestadas;
+  private ArrayList<Copia> prestadas;
 
   /**
    * N�mero de la siguiente copia a adicionar
@@ -65,24 +65,50 @@ public class Pelicula {
   // -----------------------------------------------------------------
 
   /**
-   * Adiciona una nueva copia de la pel�cula. <br>
-   * <b>post: </b>La lista de pel�culas disponibles tiene una nueva copia.
-   * 
-   * @return c�digo de la copia creada. c�digo >= 1;
+   * Adiciona una nueva copia de la película.
+   * <b>post: </b>La lista de películas disponibles tiene una nueva copia.
+   * @return código de la copia creada. código >= 1
    */
   public int agregarCopia() {
-    // TODO implementar. Recuerde retornar lo indicado en la documentación.
-    return codigoSiguienteCopia;
+    // Crear la nueva copia con el título de la película y el código siguiente
+    Copia nuevaCopia = new Copia(titulo, codigoSiguienteCopia);
+    
+    if (disponibles == null) {
+        disponibles = new ArrayList<Copia>();
+    }
+    
+    disponibles.add(nuevaCopia);
+    
+    // Guardar el código actual para retornarlo
+    int codigoActual = codigoSiguienteCopia;
+    
+    codigoSiguienteCopia++;
+    
+    return codigoActual;
   }
 
+
   /**
-   * Retorna una copia de pel�cula para alquilar si hay disponibles. <br>
+   * Retorna una copia de pel�cula para alquilar si hay disponibles.
    * <b>post: </b> la copia queda en la lista de prestadas.
-   * 
    * @return Copia que ha sido alquilada o null si no hay disponibles.
    */
   public Copia alquilarCopia() {
-    // TODO implementar. Recuerde retornar lo indicado en la documentaci�n.
+    if (disponibles == null || disponibles.isEmpty()) {
+        return null;
+    }
+
+    Copia copiaAlquilar = disponibles.get(0);
+
+    disponibles.remove(0);
+
+    if (prestadas == null) {
+        prestadas = new ArrayList<Copia>();
+    }
+
+    prestadas.add(copiaAlquilar);
+
+    return copiaAlquilar;
   }
 
   /**
@@ -102,6 +128,38 @@ public class Pelicula {
    * 
    * @return t�tulo de la pel�cula.
    */
+
+  public void devolverCopia(int codigoCopia) throws Exception {
+    if (prestadas == null || prestadas.isEmpty()) {
+        throw new Exception("No hay copias prestadas de esta película");
+    }
+
+    Copia copiaADevolver = null;
+
+    for (int i = 0; i < prestadas.size(); i++) {
+        Copia copia = (Copia) prestadas.get(i);
+        if (copia.darCodigo() == codigoCopia) {
+            copiaADevolver = copia;
+            prestadas.remove(i);
+            break;
+        }
+    }
+
+    if (copiaADevolver == null) {
+        throw new Exception("La copia con el código " + codigoCopia + " no está prestada");
+    }
+
+    if (disponibles == null) {
+        disponibles = new ArrayList<Copia>();
+    }
+
+    disponibles.add(copiaADevolver);
+  }
+
+  /**
+   * Retorna el título de la película
+   * @return título de la película
+   */
   public String darTitulo() {
     return titulo;
   }
@@ -114,6 +172,16 @@ public class Pelicula {
    */
   // TODO Definir la signatura del m�todo de acuerdo a la documentaci�n e
   // implementarlo.
+  public int darTotalCopias() {
+    int total = 0;
+    if (disponibles != null) {
+        total += disponibles.size();
+    }
+    if (prestadas != null) {
+        total += prestadas.size();
+    }
+    return total;
+  }
 
   /**
    * Retorna el n�mero de copias disponibles
@@ -122,6 +190,13 @@ public class Pelicula {
    */
   // TODO Definir la signatura del m�todo de acuerdo a la documentaci�n e
   // implementarlo.
+  public int darCopiasDisponibles() {
+    if (disponibles != null) {
+        return disponibles.size();
+    }
+    return 0;
+  }
+
 }
 
 
