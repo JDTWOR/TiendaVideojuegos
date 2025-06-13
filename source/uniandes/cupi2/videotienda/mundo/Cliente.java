@@ -116,7 +116,7 @@ public class Cliente {
           return null;
       }
       for (Copia copia : alquiladas) {
-          if (copia.darTitulo().equals(pelicula.darTitulo()) && 
+          if (copia.darTituloPelicula().equals(pelicula.darTitulo()) && 
               copia.darCodigo() == codigoCopia) {
               return copia;
           }
@@ -138,7 +138,7 @@ public class Cliente {
       Copia copiaDevolver = null;
       
       for (Copia copia : alquiladas) {
-          if (copia.darTitulo().equals(pelicula) && copia.darCodigo() == codigo) {
+          if (copia.darTituloPelicula().equals(pelicula) && copia.darCodigo() == codigo) {
               copiaDevolver = copia;
               encontrada = true;
               break;

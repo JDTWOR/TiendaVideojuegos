@@ -13,7 +13,7 @@ public class Copia {
     return codigo;
   }
 
-  public String darTitulo() {
+  public String darTituloPelicula() {
     return tituloPelicula;
   }
 

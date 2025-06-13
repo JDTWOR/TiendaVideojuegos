@@ -79,7 +79,7 @@ public class VideoTienda {
       int total = Integer.parseInt(dato);
       
       for (int i = 1; i <= total; i++) {
-          String titulo = datos.getProperty("pelicula" + i + ".titulo");
+          String titulo = datos.getProperty("pelicula" + i + ".nombre");
           catalogo.add(new Pelicula(titulo));
       }
   }
@@ -174,7 +174,7 @@ public class VideoTienda {
    * @param titulo Título de la película. titulo != null.
    * @return la película correspondiente al título, o null si no existe.
    */
-  private Pelicula buscarPelicula(String titulo) {
+  public Pelicula buscarPelicula(String titulo) {
       for (Pelicula p : catalogo) {
           if (p.darTitulo().equals(titulo)) {
               return p;
@@ -204,7 +204,7 @@ public class VideoTienda {
    * @param cedula Cédula del cliente a buscar. cedula != null
    * @return Cliente si lo encuentra, null si no existe
    */
-  private Cliente buscarCliente(String cedula) {
+  public Cliente buscarCliente(String cedula) {
       for (Cliente cliente : clientes) {
           if (cliente.darCedula().equals(cedula)) {
               return cliente;

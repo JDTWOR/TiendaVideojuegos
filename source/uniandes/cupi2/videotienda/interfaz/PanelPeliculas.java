@@ -1,8 +1,8 @@
 /**
  * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 
  * $Id: PanelPeliculas.java,v 1.1 2005/12/16 15:13:33 k-marcos Exp $ 
- * Universidad de los Andes (Bogotá - Colombia)
- * Departamento de Ingeniería de Sistemas y Computación 
+ * Universidad de los Andes (Bogotï¿½ - Colombia)
+ * Departamento de Ingenierï¿½a de Sistemas y Computaciï¿½n 
  * Licenciado bajo el esquema Academic Free License version 2.1 
  *
  * Proyecto Cupi2 (http://cupi2.uniandes.edu.co)
@@ -28,7 +28,7 @@ import javax.swing.JScrollPane;
 import uniandes.cupi2.videotienda.mundo.Pelicula;
 
 /**
- * Panel para el manejo de las películas
+ * Panel para el manejo de las pelï¿½culas
  */
 public class PanelPeliculas extends JPanel implements ActionListener
 {
@@ -37,12 +37,12 @@ public class PanelPeliculas extends JPanel implements ActionListener
     //-----------------------------------------------------------------
 
     /**
-     * Comando buscar película
+     * Comando buscar pelï¿½cula
      */
     private static final String BUSCAR = "buscar";
 
     /**
-     * Comando agregar copia de película
+     * Comando agregar copia de pelï¿½cula
      */
     private static final String AGREGAR_COPIA = "agregar_copia";
 
@@ -51,7 +51,7 @@ public class PanelPeliculas extends JPanel implements ActionListener
     //-----------------------------------------------------------------
 
     /**
-     * Ventana principal de la aplicación
+     * Ventana principal de la aplicaciï¿½n
      */
     private InterfazVideotienda ventanaPrincipal;
 
@@ -59,7 +59,7 @@ public class PanelPeliculas extends JPanel implements ActionListener
     // Atributos de Interfaz
     //-----------------------------------------------------------------
 
-    private JList listaPeliculas;
+    private JList<String> listaPeliculas;
     private JButton botonBuscar;
     private JButton botonCopia;
 
@@ -68,17 +68,17 @@ public class PanelPeliculas extends JPanel implements ActionListener
     //-----------------------------------------------------------------
 
     /**
-     * Crea el panel para el manejo de las películas
-     * @param ventana Ventana principal de la aplicación. ventana != null.
+     * Crea el panel para el manejo de las pelï¿½culas
+     * @param ventana Ventana principal de la aplicaciï¿½n. ventana != null.
      */
     public PanelPeliculas( InterfazVideotienda ventana )
     {
         ventanaPrincipal = ventana;
 
-        setBorder( BorderFactory.createTitledBorder( "Catálogo de Películas" ) );
+        setBorder( BorderFactory.createTitledBorder( "Catï¿½logo de Pelï¿½culas" ) );
         setLayout( new BorderLayout( ) );
 
-        listaPeliculas = new JList( );
+        listaPeliculas = new JList<String>( );
         JScrollPane scroll = new JScrollPane( );
         scroll.setViewportView( listaPeliculas );
         scroll.setVerticalScrollBarPolicy( JScrollPane.VERTICAL_SCROLLBAR_ALWAYS );
@@ -102,27 +102,27 @@ public class PanelPeliculas extends JPanel implements ActionListener
     }
 
     //-----------------------------------------------------------------
-    // Métodos
+    // Mï¿½todos
     //-----------------------------------------------------------------
 
     /**
-     * Actualiza el listado de películas
-     * @param peliculas Listado de las películas. peliculas != null.
+     * Actualiza el listado de pelï¿½culas
+     * @param peliculas Listado de las pelï¿½culas. peliculas != null.
      */
-    public void actualizarPeliculas( ArrayList peliculas )
+    public void actualizarPeliculas( ArrayList<Pelicula> peliculas )
     {
         String[] lista = new String[peliculas.size( )];
 
         for( int i = 0; i < peliculas.size( ); i++ )
-            lista[ i ] = ( ( Pelicula )peliculas.get( i ) ).darTitulo( );
+            lista[ i ] = peliculas.get( i ).darTitulo( );
 
         listaPeliculas.removeAll( );
         listaPeliculas.setListData( lista );
     }
 
     /**
-     * Retorna el título de la película seleccionada en la lista
-     * @return título de la película seleccionada. Si no hay ninguna seleccionada retorna null.
+     * Retorna el tï¿½tulo de la pelï¿½cula seleccionada en la lista
+     * @return tï¿½tulo de la pelï¿½cula seleccionada. Si no hay ninguna seleccionada retorna null.
      */
     public String darPeliculaSeleccionada( )
     {
@@ -134,7 +134,7 @@ public class PanelPeliculas extends JPanel implements ActionListener
 
     /**
      * Responde a los eventos de los botones del panel
-     * @param evento Evento generado por un botón. evento != null.
+     * @param evento Evento generado por un botï¿½n. evento != null.
      */
     public void actionPerformed( ActionEvent evento )
     {
@@ -144,7 +144,7 @@ public class PanelPeliculas extends JPanel implements ActionListener
         {
             if( titulo == null )
             {
-                JOptionPane.showMessageDialog( this, "Debe seleccionar una película", "Mostrar Película", JOptionPane.ERROR_MESSAGE );
+                JOptionPane.showMessageDialog( this, "Debe seleccionar una pelï¿½cula", "Mostrar Pelï¿½cula", JOptionPane.ERROR_MESSAGE );
                 return;
             }
             ventanaPrincipal.mostrarPelicula( titulo );
@@ -153,7 +153,7 @@ public class PanelPeliculas extends JPanel implements ActionListener
         {
             if( titulo == null )
             {
-                JOptionPane.showMessageDialog( this, "Debe seleccionar una película", "Agregar Copia Película", JOptionPane.ERROR_MESSAGE );
+                JOptionPane.showMessageDialog( this, "Debe seleccionar una pelï¿½cula", "Agregar Copia Pelï¿½cula", JOptionPane.ERROR_MESSAGE );
                 return;
             }
             ventanaPrincipal.agregarCopia( titulo );

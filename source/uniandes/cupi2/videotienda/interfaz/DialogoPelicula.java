@@ -1,8 +1,8 @@
 /**
  * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 
  * $Id: DialogoPelicula.java,v 1.1 2005/12/16 15:13:33 k-marcos Exp $ 
- * Universidad de los Andes (Bogotá - Colombia)
- * Departamento de Ingeniería de Sistemas y Computación 
+ * Universidad de los Andes (Bogotï¿½ - Colombia)
+ * Departamento de Ingenierï¿½a de Sistemas y Computaciï¿½n 
  * Licenciado bajo el esquema Academic Free License version 2.1 
  *
  * Proyecto Cupi2 (http://cupi2.uniandes.edu.co)
@@ -20,7 +20,7 @@ import javax.swing.JDialog;
 import uniandes.cupi2.videotienda.mundo.Pelicula;
 
 /**
- * Diálogo para mostrar los datos de una película
+ * Diï¿½logo para mostrar los datos de una pelï¿½cula
  */
 public class DialogoPelicula extends JDialog
 {
@@ -28,12 +28,12 @@ public class DialogoPelicula extends JDialog
     // Atributos
     //-----------------------------------------------------------------
     /**
-     * Película a mostrar en el panel
+     * Pelï¿½cula a mostrar en el panel
      */
     private Pelicula pelicula;
 
     /**
-     * Panel de datos de la película
+     * Panel de datos de la pelï¿½cula
      */
     private PanelDatosPelicula panelDatos;
 
@@ -41,8 +41,8 @@ public class DialogoPelicula extends JDialog
     // Constructores
     //-----------------------------------------------------------------
     /**
-     * Crea el diálogo para mostrar la información de la película dada
-     * @param laPelicula Película a mostrar. laPelicula != null.
+     * Crea el diï¿½logo para mostrar la informaciï¿½n de la pelï¿½cula dada
+     * @param laPelicula Pelï¿½cula a mostrar. laPelicula != null.
      */
     public DialogoPelicula( Pelicula laPelicula )
     {
@@ -51,16 +51,16 @@ public class DialogoPelicula extends JDialog
         setLayout( new BorderLayout( ) );
         add( panelDatos, BorderLayout.CENTER );
         pack( );
-        setTitle( "Información de la Película" );
+        setTitle( "Informaciï¿½n de la Pelï¿½cula" );
     }
 
     //-----------------------------------------------------------------
-    // Métodos
+    // Mï¿½todos
     //-----------------------------------------------------------------
 
     /**
-     * Retorna el título de la película
-     * @return título de película
+     * Retorna el tï¿½tulo de la pelï¿½cula
+     * @return tï¿½tulo de pelï¿½cula
      */
     public String darTitulo( )
     {
@@ -68,25 +68,25 @@ public class DialogoPelicula extends JDialog
     }
 
     /**
-     * Retorna el número de copias disponibles de la película
-     * @return número de copias disponibles
+     * Retorna el nï¿½mero de copias disponibles de la pelï¿½cula
+     * @return nï¿½mero de copias disponibles
      */
     public int darNumeroDisponibles( )
     {
-        return pelicula.darNumeroDisponibles( );
+        return pelicula.darCopiasDisponibles( );
     }
 
     /**
-     * Retorna el número de copias prestadas de la película
-     * @return número de copias prestadas
+     * Retorna el nï¿½mero de copias prestadas de la pelï¿½cula
+     * @return nï¿½mero de copias prestadas
      */
     public int darNumeroPrestadas( )
     {
-        return pelicula.darTotalCopias( ) - pelicula.darNumeroDisponibles( );
+        return pelicula.darTotalCopias( ) - pelicula.darCopiasDisponibles( );
     }
 
     /**
-     * Sale del diálogo
+     * Sale del diï¿½logo
      */
     public void aceptar( )
     {

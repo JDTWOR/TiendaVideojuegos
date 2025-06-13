@@ -1,8 +1,8 @@
 /**
  * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 
  * $Id: PanelAlquiladasCliente.java,v 1.1 2005/12/16 15:13:33 k-marcos Exp $ 
- * Universidad de los Andes (Bogotá - Colombia)
- * Departamento de Ingeniería de Sistemas y Computación 
+ * Universidad de los Andes (Bogotï¿½ - Colombia)
+ * Departamento de Ingenierï¿½a de Sistemas y Computaciï¿½n 
  * Licenciado bajo el esquema Academic Free License version 2.1 
  *
  * Proyecto Cupi2 (http://cupi2.uniandes.edu.co)
@@ -28,7 +28,7 @@ import javax.swing.JScrollPane;
 import uniandes.cupi2.videotienda.mundo.Copia;
 
 /**
- * Panel para presentar las películas alquiladas de un cliente
+ * Panel para presentar las pelï¿½culas alquiladas de un cliente
  */
 public class PanelAlquiladasCliente extends JPanel implements ActionListener
 {
@@ -46,7 +46,7 @@ public class PanelAlquiladasCliente extends JPanel implements ActionListener
     //-----------------------------------------------------------------
 
     /**
-     * Ventana principal de la aplicación
+     * Ventana principal de la aplicaciï¿½n
      */
     private DialogoConsultaCliente dialogo;
 
@@ -54,7 +54,7 @@ public class PanelAlquiladasCliente extends JPanel implements ActionListener
     // Atributos de Interfaz
     //-----------------------------------------------------------------
 
-    private JList listaAlquiladas;
+    private JList<String> listaAlquiladas;
     private JButton botonDevolver;
 
     //-----------------------------------------------------------------
@@ -62,17 +62,17 @@ public class PanelAlquiladasCliente extends JPanel implements ActionListener
     //-----------------------------------------------------------------
 
     /**
-     * Crea el panel para la lista de películas alquiladas del cliente
-     * @param elDialogo Dialogo dónde se presenta el panel. elDialogo != null.
+     * Crea el panel para la lista de pelï¿½culas alquiladas del cliente
+     * @param elDialogo Dialogo dï¿½nde se presenta el panel. elDialogo != null.
      */
     public PanelAlquiladasCliente( DialogoConsultaCliente elDialogo )
     {
         dialogo = elDialogo;
 
-        setBorder( BorderFactory.createTitledBorder( "Películas Alquiladas" ) );
+        setBorder( BorderFactory.createTitledBorder( "Pelï¿½culas Alquiladas" ) );
         setLayout( new BorderLayout( ) );
 
-        listaAlquiladas = new JList( );
+        listaAlquiladas = new JList<String>( );
         JScrollPane scroll = new JScrollPane( );
         scroll.setViewportView( listaAlquiladas );
         scroll.setVerticalScrollBarPolicy( JScrollPane.VERTICAL_SCROLLBAR_ALWAYS );
@@ -91,21 +91,21 @@ public class PanelAlquiladasCliente extends JPanel implements ActionListener
     }
 
     //-----------------------------------------------------------------
-    // Métodos
+    // Mï¿½todos
     //-----------------------------------------------------------------
 
     /**
      * Actualiza el listado de clientes
      * @param alquiladas Listado de clientes. clientes != null.
      */
-    public void actualizarAlquiladas( ArrayList alquiladas )
+    public void actualizarAlquiladas( ArrayList<Copia> alquiladas )
     {
         String[] lista = new String[alquiladas.size( )];
         Copia c;
 
         for( int i = 0; i < alquiladas.size( ); i++ )
         {
-            c = ( Copia )alquiladas.get( i );
+            c = alquiladas.get( i );
             lista[ i ] = c.darTituloPelicula( ) + " (" + c.darCodigo( ) + ")";
         }
 
@@ -114,8 +114,8 @@ public class PanelAlquiladasCliente extends JPanel implements ActionListener
     }
 
     /**
-     * Retorna el índice de la copia de película seleccionada
-     * @return índice película seleccionada.
+     * Retorna el ï¿½ndice de la copia de pelï¿½cula seleccionada
+     * @return ï¿½ndice pelï¿½cula seleccionada.
      */
     public int darCopiaSeleccionada( )
     {
@@ -124,7 +124,7 @@ public class PanelAlquiladasCliente extends JPanel implements ActionListener
 
     /**
      * Responde a los eventos de los botones del panel
-     * @param evento Evento generado por un botón. evento != null.
+     * @param evento Evento generado por un botï¿½n. evento != null.
      */
     public void actionPerformed( ActionEvent evento )
     {
@@ -135,7 +135,7 @@ public class PanelAlquiladasCliente extends JPanel implements ActionListener
         {
             if( copiaS == -1 )
             {
-                JOptionPane.showMessageDialog( this, "Debe seleccionar una copia de película", "Devolver Película", JOptionPane.ERROR_MESSAGE );
+                JOptionPane.showMessageDialog( this, "Debe seleccionar una copia de pelï¿½cula", "Devolver Pelï¿½cula", JOptionPane.ERROR_MESSAGE );
                 return;
             }
 
