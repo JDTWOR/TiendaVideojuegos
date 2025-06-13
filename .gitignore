@@ -1,0 +1,7 @@
+# Ignorar archivos compilados
+*.class
+
+# Ignorar carpetas generadas
+/bin/
+/build/
+/target/
