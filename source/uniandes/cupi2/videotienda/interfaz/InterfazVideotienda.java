@@ -1,8 +1,8 @@
 /**
  * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 
  * $Id: InterfazVideotienda.java,v 1.1 2005/12/16 15:13:33 k-marcos Exp $ 
- * Universidad de los Andes (Bogot� - Colombia)
- * Departamento de Ingenier�a de Sistemas y Computaci�n 
+ * Universidad de los Andes (Bogotá - Colombia)
+ * Departamento de Ingeniería de Sistemas y Computación 
  * Licenciado bajo el esquema Academic Free License version 2.1 
  *
  * Proyecto Cupi2 (http://cupi2.uniandes.edu.co)
@@ -29,7 +29,7 @@ import uniandes.cupi2.videotienda.mundo.Pelicula;
 import uniandes.cupi2.videotienda.mundo.VideoTienda;
 
 /**
- * Ventana principal de la aplicaci�n de la videotienda
+ * Ventana principal de la aplicación de la videotienda
  */
 public class InterfazVideotienda extends JFrame
 {
@@ -57,7 +57,7 @@ public class InterfazVideotienda extends JFrame
     private PanelClientes panelClientes;
 
     /**
-     * Panel para el manejo de las pel�culas
+     * Panel para el manejo de las películas
      */
     private PanelPeliculas panelPeliculas;
 
@@ -105,7 +105,7 @@ public class InterfazVideotienda extends JFrame
         }
         catch( Exception e )
         {
-            JOptionPane.showMessageDialog( this, "No se pudo cargar la informaci�n de las pel�culas del archivo " + archivo, "Videotienda UniAndes", JOptionPane.INFORMATION_MESSAGE );
+            JOptionPane.showMessageDialog( this, "No se pudo cargar la información de las películas del archivo " + archivo, "Videotienda UniAndes", JOptionPane.INFORMATION_MESSAGE );
         }
 
         pack( );
@@ -116,7 +116,7 @@ public class InterfazVideotienda extends JFrame
 
     }
     //-----------------------------------------------------------------
-    // M�todos
+    // Métodos
     //-----------------------------------------------------------------
 
     /**
@@ -128,7 +128,7 @@ public class InterfazVideotienda extends JFrame
         try
         {
             videotienda.modificarTarifa( tarifa );
-            JOptionPane.showMessageDialog( this, "La tarifa fue actualizada con �xito", "Cambio de Tarifa", JOptionPane.INFORMATION_MESSAGE );
+            JOptionPane.showMessageDialog( this, "La tarifa fue actualizada con éxito", "Cambio de Tarifa", JOptionPane.INFORMATION_MESSAGE );
         }
         catch( Exception e )
         {
@@ -137,8 +137,8 @@ public class InterfazVideotienda extends JFrame
     }
 
     /**
-     * Retorna el cat�logo de pel�culas
-     * @return cat�logo de pel�culas de la videotienda
+     * Retorna el catálogo de películas
+     * @return catálogo de películas de la videotienda
      */
     public ArrayList<Pelicula> darCatalogo( )
     {
@@ -146,22 +146,22 @@ public class InterfazVideotienda extends JFrame
     }
 
     /**
-     * Busca y muestra la informaci�n de la pel�cula.
-     * @param titulo T�tulo de la pel�cula. titulo != null.
+     * Busca y muestra la información de la película.
+     * @param titulo Título de la película. titulo != null.
      */
     public void mostrarPelicula( String titulo )
     {
         Pelicula p = videotienda.buscarPelicula( titulo );
         if( p == null )
-            JOptionPane.showMessageDialog( this, "La pel�cula no existe", "Ver Informaci�n Pel�cula", JOptionPane.ERROR_MESSAGE );
+            JOptionPane.showMessageDialog( this, "La película no existe", "Ver Información Película", JOptionPane.ERROR_MESSAGE );
         DialogoPelicula dialogo = new DialogoPelicula( p );
         centrarVentana( dialogo );
         dialogo.setVisible( true );
     }
 
     /**
-     * Agrega una copia a la pel�cula del t�tulo dado
-     * @param titulo T�tulo de la pel�cula. titulo != null.
+     * Agrega una copia a la película del título dado
+     * @param titulo Título de la película. titulo != null.
      */
     public void agregarCopia( String titulo )
     {
@@ -169,7 +169,7 @@ public class InterfazVideotienda extends JFrame
         {
             videotienda.agregarCopiaPelicula( titulo );
             Pelicula p = videotienda.buscarPelicula( titulo );
-            JOptionPane.showMessageDialog( this, "La pel�cula \"" + titulo + "\" tiene " + p.darTotalCopias( ) + " copias", "Agregar Copia", JOptionPane.INFORMATION_MESSAGE );
+            JOptionPane.showMessageDialog( this, "La película \"" + titulo + "\" tiene " + p.darTotalCopias( ) + " copias", "Agregar Copia", JOptionPane.INFORMATION_MESSAGE );
         }
         catch( Exception e )
         {
@@ -179,15 +179,15 @@ public class InterfazVideotienda extends JFrame
     }
 
     /**
-     * Busca y muestra la informaci�n de un cliente.
-     * @param cedula C�dula del cliente a mostrar. cedula != null.
+     * Busca y muestra la información de un cliente.
+     * @param cedula Cédula del cliente a mostrar. cedula != null.
      */
     public void mostrarCliente( String cedula )
     {
         Cliente c = videotienda.buscarCliente( cedula );
         if( c == null )
         {
-            JOptionPane.showMessageDialog( this, "El cliente no est� registrado", "Ver Informaci�n Cliente", JOptionPane.ERROR_MESSAGE );
+            JOptionPane.showMessageDialog( this, "El cliente no está registrado", "Ver Información Cliente", JOptionPane.ERROR_MESSAGE );
             return;
         }
         DialogoConsultaCliente dialogo = new DialogoConsultaCliente( c, this );
@@ -208,8 +208,8 @@ public class InterfazVideotienda extends JFrame
     /**
      * Afilia un nuevo cliente a la videotienda.
      * @param nombre Nombre del cliente. nombre != null.
-     * @param cedula C�dula del cliente. cedula != null.
-     * @param direccion Direcci�n del cliente. direccion != null.
+     * @param cedula Cédula del cliente. cedula != null.
+     * @param direccion Dirección del cliente. direccion != null.
      * @param saldo Saldo inicial del cliente. saldo >0.
      */
     public void afiliarCliente( String nombre, String cedula, String direccion, int saldo )
@@ -221,7 +221,7 @@ public class InterfazVideotienda extends JFrame
         }
         catch( Exception e )
         {
-            JOptionPane.showMessageDialog( this, e.getMessage( ), "Afiliaci�n de Cliente", JOptionPane.ERROR_MESSAGE );
+            JOptionPane.showMessageDialog( this, e.getMessage( ), "Afiliación de Cliente", JOptionPane.ERROR_MESSAGE );
             return;
         }
 
@@ -239,7 +239,7 @@ public class InterfazVideotienda extends JFrame
 
     /**
      * Recarga el saldo del cliente con la cantidad dada
-     * @param cedula C�dula del cliente. cedula != null.
+     * @param cedula Cédula del cliente. cedula != null.
      * @param recarga Monto de la recarga.
      */
     public void cargarSaldo( String cedula, int recarga )
@@ -256,38 +256,38 @@ public class InterfazVideotienda extends JFrame
     }
 
     /**
-     * Inicia el alquiler de una pel�cula
+     * Inicia el alquiler de una película
      */
     public void alquilarPelicula( )
     {
         String pelicula = panelPeliculas.darPeliculaSeleccionada( );
         if( pelicula == null )
         {
-            JOptionPane.showMessageDialog( this, "Debe seleccionar una pel�cula", "Alquilar Pel�cula", JOptionPane.ERROR_MESSAGE );
+            JOptionPane.showMessageDialog( this, "Debe seleccionar una película", "Alquilar Película", JOptionPane.ERROR_MESSAGE );
             return;
         }
         String cliente = panelClientes.darClienteSeleccionado( );
         if( cliente == null )
         {
-            JOptionPane.showMessageDialog( this, "Debe seleccionar un cliente", "Alquilar Pel�cula", JOptionPane.ERROR_MESSAGE );
+            JOptionPane.showMessageDialog( this, "Debe seleccionar un cliente", "Alquilar Película", JOptionPane.ERROR_MESSAGE );
             return;
         }
         try
         {
             videotienda.alquilarPelicula( pelicula, cliente );
-            JOptionPane.showMessageDialog( this, "Se alquil� la pel�cula \"" + pelicula + "\" exitosamente", "Alquilar Pel�cula", JOptionPane.INFORMATION_MESSAGE );
+            JOptionPane.showMessageDialog( this, "Se alquiló la película \"" + pelicula + "\" exitosamente", "Alquilar Película", JOptionPane.INFORMATION_MESSAGE );
         }
         catch( Exception e )
         {
-            JOptionPane.showMessageDialog( this, e.getMessage( ), "Alquilar Pel�cula", JOptionPane.ERROR_MESSAGE );
+            JOptionPane.showMessageDialog( this, e.getMessage( ), "Alquilar Película", JOptionPane.ERROR_MESSAGE );
         }
     }
 
     /**
      * Devuelve la copia alquilada por un cliente
-     * @param cedula C�dula del cliente. cliente != null.
-     * @param pelicula T�tulo de la pel�cula a devolver. pelicula != null.
-     * @param copia N�mero de la copia a devolver.
+     * @param cedula Cédula del cliente. cliente != null.
+     * @param pelicula Título de la película a devolver. pelicula != null.
+     * @param copia Número de la copia a devolver.
      */
     public void devolverCopia( String cedula, String pelicula, int copia )
     {
@@ -297,7 +297,7 @@ public class InterfazVideotienda extends JFrame
         }
         catch( Exception e )
         {
-            JOptionPane.showMessageDialog( this, e.getMessage( ), "Devolver Pel�cula", JOptionPane.ERROR_MESSAGE );
+            JOptionPane.showMessageDialog( this, e.getMessage( ), "Devolver Película", JOptionPane.ERROR_MESSAGE );
         }
     }
 
@@ -317,11 +317,11 @@ public class InterfazVideotienda extends JFrame
     }
 
     //-----------------------------------------------------------------
-    // Puntos de Extensi�n
+    // Puntos de Extensión
     //-----------------------------------------------------------------
 
     /**
-     * M�todo de extensi�n 1
+     * Método de extensión 1
      */
     public void reqFuncOpcion1( )
     {
@@ -330,7 +330,7 @@ public class InterfazVideotienda extends JFrame
     }
 
     /**
-     * M�todo de extensi�n 2
+     * Método de extensión 2
      */
     public void reqFuncOpcion2( )
     {
@@ -339,11 +339,11 @@ public class InterfazVideotienda extends JFrame
     }
 
     //-----------------------------------------------------------------
-    // Ejecuci�n
+    // Ejecución
     //-----------------------------------------------------------------
     /**
-     * M�todo para la ejecuci�n del programa
-     * @param args Argumentos para la ejecuci�n. No se requiere ninguno.
+     * Método para la ejecución del programa
+     * @param args Argumentos para la ejecución. No se requiere ninguno.
      */
     public static void main( String[] args )
     {

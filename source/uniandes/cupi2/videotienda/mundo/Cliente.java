@@ -15,6 +15,39 @@ public class Cliente {
   private ArrayList<Copia> alquiladas;
 
   public Cliente(String laCedula, String elNombre, String laDireccion) {
+    // Validaciones para la cédula
+    if (laCedula == null || laCedula.isEmpty()) {
+      throw new IllegalArgumentException("La cédula no puede ser nula o vacía");
+    }
+    if (!laCedula.matches("\\d+")) {
+      throw new IllegalArgumentException("La cédula debe contener solo dígitos");
+    }
+    if (laCedula.length() < 5 || laCedula.length() > 10) {
+      throw new IllegalArgumentException("La cédula debe tener entre 5 y 10 dígitos");
+    }
+    if (laCedula.charAt(0) == '0') {
+      throw new IllegalArgumentException("La cédula no puede comenzar con cero");
+    }
+    
+    // Validaciones para el nombre
+    if (elNombre == null || elNombre.isEmpty()) {
+      throw new IllegalArgumentException("El nombre no puede ser nulo o vacío");
+    }
+    if (!elNombre.matches("[a-zA-Z ]+")) {
+      throw new IllegalArgumentException("El nombre solo puede contener letras y espacios");
+    }
+    
+    // Validaciones para la dirección
+    if (laDireccion == null || laDireccion.isEmpty()) {
+      throw new IllegalArgumentException("La dirección no puede ser nula o vacía");
+    }
+    if (!laDireccion.matches("[a-zA-Z0-9 ,.-]+")) {
+      throw new IllegalArgumentException("La dirección solo puede contener letras, números, espacios, comas, puntos y guiones");
+    }
+    if (laDireccion.length() < 5 || laDireccion.length() > 100) {
+      throw new IllegalArgumentException("La dirección debe tener entre 5 y 100 caracteres");
+    }
+    
     cedula = laCedula;
     nombre = elNombre;
     direccion = laDireccion;
@@ -23,49 +56,18 @@ public class Cliente {
   }
 
   public String darCedula() {
-    if (cedula == null || cedula.isEmpty()) {
-      throw new IllegalArgumentException("La cédula no puede ser nula o vacía");
-    }
-    if (!cedula.matches("\\d+")) {
-      throw new IllegalArgumentException("La cédula debe contener solo dígitos");
-    }
-    if (cedula.length() < 5 || cedula.length() > 10) {
-      throw new IllegalArgumentException("La cédula debe tener entre 5 y 10 dígitos");
-    }
-    if (cedula.charAt(0) == '0') {
-      throw new IllegalArgumentException("La cédula no puede comenzar con cero");
-    }
     return cedula;
-
   }
 
   public int darSaldo() {
-    if (saldo < 0) {
-      throw new IllegalArgumentException("El saldo no puede ser negativo");
-    }
     return saldo;
   }
 
   public String darNombre() {
-    if (nombre == null || nombre.isEmpty()) {
-      throw new IllegalArgumentException("El nombre no puede ser nulo o vacío");
-    }
-    if (!nombre.matches("[a-zA-Z ]+")) {
-      throw new IllegalArgumentException("El nombre solo puede contener letras y espacios");
-    }
     return nombre;
   }
 
   public String darDireccion() {
-    if (direccion == null || direccion.isEmpty()) {
-      throw new IllegalArgumentException("La dirección no puede ser nula o vacía");
-    }
-    if (!direccion.matches("[a-zA-Z0-9 ,.-]+")) {
-      throw new IllegalArgumentException("La dirección solo puede contener letras, números, espacios, comas, puntos y guiones");
-    }
-    if (direccion.length() < 5 || direccion.length() > 100) {
-      throw new IllegalArgumentException("La dirección debe tener entre 5 y 100 caracteres");
-    }
     return direccion;
   }
 

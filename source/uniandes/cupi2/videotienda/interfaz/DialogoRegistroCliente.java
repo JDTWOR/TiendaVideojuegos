@@ -1,8 +1,8 @@
 /**
  * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 
  * $Id: DialogoRegistroCliente.java,v 1.1 2005/12/16 15:13:33 k-marcos Exp $ 
- * Universidad de los Andes (Bogotá - Colombia)
- * Departamento de Ingeniería de Sistemas y Computación 
+ * Universidad de los Andes (Bogotï¿½ - Colombia)
+ * Departamento de Ingenierï¿½a de Sistemas y Computaciï¿½n 
  * Licenciado bajo el esquema Academic Free License version 2.1 
  *
  * Proyecto Cupi2 (http://cupi2.uniandes.edu.co)
@@ -19,7 +19,7 @@ import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 
 /**
- * Diálogo para registrar un nuevo cliente
+ * Diï¿½logo para registrar un nuevo cliente
  */
 public class DialogoRegistroCliente extends JDialog
 {
@@ -28,12 +28,12 @@ public class DialogoRegistroCliente extends JDialog
     //-----------------------------------------------------------------
 
     /**
-     * Ventana principal de la aplicación
+     * Ventana principal de la aplicaciï¿½n
      */
     private InterfazVideotienda ventanaPrincipal;
 
     /**
-     * Panel de datos de la película
+     * Panel de datos de la pelï¿½cula
      */
     private PanelRegistroCliente panelRegistro;
 
@@ -41,7 +41,7 @@ public class DialogoRegistroCliente extends JDialog
     // Constructores
     //-----------------------------------------------------------------
     /**
-     * Crea el diálogo para capturar la información de un nuevo cliente
+     * Crea el diï¿½logo para capturar la informaciï¿½n de un nuevo cliente
      * @param ventana Ventana principal. ventana != null.
      */
     public DialogoRegistroCliente( InterfazVideotienda ventana )
@@ -51,11 +51,11 @@ public class DialogoRegistroCliente extends JDialog
         setLayout( new BorderLayout( ) );
         add( panelRegistro, BorderLayout.CENTER );
         pack( );
-        setTitle( "Afiliación de Cliente" );
+        setTitle( "AfiliaciÃ³n de Cliente" );
     }
 
     //-----------------------------------------------------------------
-    // Métodos
+    // Mï¿½todos
     //-----------------------------------------------------------------
 
     /**
@@ -69,7 +69,7 @@ public class DialogoRegistroCliente extends JDialog
         String sSaldo = panelRegistro.darSaldo( );
         if( nombre.equals( "" ) || cedula.equals( "" ) || direccion.equals( "" ) || sSaldo.equals( "" ) )
         {
-            JOptionPane.showMessageDialog( this, "Debe completar todos los datos", "Afiliación de Cliente", JOptionPane.ERROR_MESSAGE );
+            JOptionPane.showMessageDialog( this, "Debe completar todos los datos", "AfiliaciÃ³n de Cliente", JOptionPane.ERROR_MESSAGE );
             return;
         }
 
@@ -79,13 +79,13 @@ public class DialogoRegistroCliente extends JDialog
             saldo = Integer.parseInt( sSaldo );
             if( saldo < 0 )
             {
-                JOptionPane.showMessageDialog( this, "El saldo inicial debe ser mayor a cero", "Afiliación de Cliente", JOptionPane.ERROR_MESSAGE );
+                JOptionPane.showMessageDialog( this, "El saldo inicial debe ser mayor a cero", "AfiliaciÃ³n de Cliente", JOptionPane.ERROR_MESSAGE );
                 return;
             }
         }
         catch( NumberFormatException nfe )
         {
-            JOptionPane.showMessageDialog( this, "El saldo debe ser un valor entero", "Afiliación de Cliente", JOptionPane.ERROR_MESSAGE );
+            JOptionPane.showMessageDialog( this, "El saldo debe ser un valor entero", "AfiliaciÃ³n de Cliente", JOptionPane.ERROR_MESSAGE );
             return;
         }
 
@@ -94,7 +94,7 @@ public class DialogoRegistroCliente extends JDialog
     }
 
     /**
-     * Cancela la operación de afiliación de cliente
+     * Cancela la operaciÃ³n de afiliaciÃ³n de cliente
      */
     public void cancelar( )
     {

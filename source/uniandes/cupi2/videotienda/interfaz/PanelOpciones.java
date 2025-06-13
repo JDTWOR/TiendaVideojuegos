@@ -1,8 +1,8 @@
 /**
  * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 
  * $Id: PanelOpciones.java,v 1.1 2005/12/16 15:13:33 k-marcos Exp $  
- * Universidad de los Andes (Bogotá - Colombia)
- * Departamento de Ingeniería de Sistemas y Computación 
+ * Universidad de los Andes (Bogotï¿½ - Colombia)
+ * Departamento de Ingenierï¿½a de Sistemas y Computaciï¿½n 
  * Licenciado bajo el esquema Academic Free License version 2.1 
  *
  * Proyecto Cupi2 (http://cupi2.uniandes.edu.co)
@@ -30,12 +30,12 @@ public class PanelOpciones extends JPanel implements ActionListener
     //-----------------------------------------------------------------
 
     /**
-     * Constante OPCION_1, Usada para realizar la opción de la extensión 1
+     * Constante OPCION_1, Usada para realizar la opciï¿½n de la extensiï¿½n 1
      */
     private final static String OPCION_1 = "OPCION_1";
 
     /**
-     * Constante OPCION_2, Usada para realizar la opción de la extensión 2
+     * Constante OPCION_2, Usada para realizar la opciï¿½n de la extensiï¿½n 2
      */
     private final static String OPCION_2 = "OPCION_2";
 
@@ -44,7 +44,7 @@ public class PanelOpciones extends JPanel implements ActionListener
     //-----------------------------------------------------------------
 
     /**
-     * Ventana principal de la aplicación
+     * Ventana principal de la aplicaciï¿½n
      */
     private InterfazVideotienda ventanaPrincipal;
 
@@ -70,13 +70,13 @@ public class PanelOpciones extends JPanel implements ActionListener
         setBorder( BorderFactory.createTitledBorder( "Extensiones" ) );
 
         botonOpcion1 = new JButton( );
-        botonOpcion1.setText( "Opción 1" );
+        botonOpcion1.setText( "OpciÃ³n 1" );
         botonOpcion1.setActionCommand( OPCION_1 );
         botonOpcion1.addActionListener( this );
         add( botonOpcion1 );
 
         botonOpcion2 = new JButton( );
-        botonOpcion2.setText( "Opción 2" );
+        botonOpcion2.setText( "OpciÃ³n 2" );
         botonOpcion2.setActionCommand( OPCION_2 );
         botonOpcion2.addActionListener( this );
         add( botonOpcion2 );
@@ -84,12 +84,12 @@ public class PanelOpciones extends JPanel implements ActionListener
     }
 
     //-----------------------------------------------------------------
-    // Métodos
+    // Mï¿½todos
     //-----------------------------------------------------------------
 
     /**
      * Responde a los eventos de los botones del panel
-     * @param evento Evento generado por un botón. evento != null.
+     * @param evento Evento generado por un botï¿½n. evento != null.
      */
     public void actionPerformed( ActionEvent evento )
     {
