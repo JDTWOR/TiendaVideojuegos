@@ -71,8 +71,12 @@ public class Pelicula {
    * @return c�digo de la copia creada. c�digo >= 1;
    */
   public int agregarCopia() {
-    // TODO implementar. Recuerde retornar lo indicado en la documentación.
-    return codigoSiguienteCopia;
+<<<<<<< HEAD
+    // TODO implementar. Recuerde retornar lo indicado en la documentaci�n.
+
+=======
+    // TODO implementar. Recuerde retornar lo indicado en la documentaci�n.
+>>>>>>> f8859d8 (Se declararon las funciones darCatalogo y darClientes)
   }
 
   /**
@@ -122,6 +126,5 @@ public class Pelicula {
    */
   // TODO Definir la signatura del m�todo de acuerdo a la documentaci�n e
   // implementarlo.
-}
 
 
